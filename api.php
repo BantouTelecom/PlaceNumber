@@ -46,12 +46,8 @@ $ofcomList['NI']         = array('prefix' => "028 9018 0", 'suffixStart' => 0, '
 $ofcomList['Cardiff']    = array('prefix' => "029 2018 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
 $ofcomList['Generic']    = array('prefix' => "01632 ",     'suffixStart' => 0, 'suffixEnd' => 999999, 'length' => 6);
 
-// ?area=XX
-
-<?
+// area= /api/uk/$area
 $request_parts = explode('/', $_SERVER['REQUEST_URI']);
-
-
 if (array_key_exists($request_parts{3}, $ofcomList))
 {
 	$area = $request_parts{3};
