@@ -47,7 +47,7 @@ $ofcomList =  array(
 );
 
 function createDropdown($arr, $frm) {
-	echo '<select name="'.$frm.'" id="'.$frm.'"><option value="">Select one…</option>';
+	echo '<select name="'.$frm.'" id="'.$frm.'" onchange="getNumber() ><option value="">Select one…</option>';
 	foreach ($arr as $key => $value) {
 		echo '<option value="'.$value.'">'.$value.'</option>';
 	}
@@ -60,6 +60,12 @@ function createDropdown($arr, $frm) {
 	<head>
 		<meta charset=utf-8 />
 		<title>PlaceNumber.net - Generate A Random Placeholder Telephone Number</title>
+		<script>
+		function getNumber() {
+		var area = crit1.options[area.selectedIndex].value;
+		  alert(area);
+		}
+		</script>
 	</head>
 	<body>
 		<label for="frmcounty">Select an Area:</label>
