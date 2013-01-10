@@ -1,2 +1,5 @@
-RewriteEngine On
-RewriteRule ^/api/ api.php
+<IfModule mod_rewrite.c>
+ RewriteEngine On
+ RewriteBase /
+ RewriteRule ^/api/ api.php
+</IfModule>
