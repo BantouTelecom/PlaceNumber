@@ -78,7 +78,7 @@ function createDropdown($arr, $frm) {
 		<?php createDropdown($ofcomList, 'area');?>
 		<div id=number></div>
 		<h2>API Use</h2>
-		You can request a random number by calling http://placenumber.net/api/uk/[area]
+		You can request a random number by calling http://<?php echo $_SERVER['SERVER_NAME'];?>/api.php/uk/[area]
 	
 		<p>Information from <a href="http://stakeholders.ofcom.org.uk/telecoms/numbering/guidance-tele-no/numbers-for-drama">Ofcom's Demo Number Page</a>
 		</p>
