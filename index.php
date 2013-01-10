@@ -73,7 +73,9 @@ function createDropdown($arr, $frm) {
 		</script>
 	</head>
 	<body>
-		<h2>Get a Random Phone Number</h2>
+		<h1>PlaceNumber<h1>
+		<h4>Generate UK Demo Numbers for Placeholders</h4>
+		<h2>Generate a Number</h2>
 		<label for="area">Select an Area:</label>
 		<?php createDropdown($ofcomList, 'area');?>
 		<div id=number></div>
