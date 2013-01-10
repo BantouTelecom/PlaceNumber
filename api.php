@@ -49,13 +49,12 @@ $ofcomList['Generic']    = array('prefix' => "01632 ",     'suffixStart' => 0, '
 // ?area=XX
 
 <?
-echo $request = $_SERVER['REQUEST_URI'];
+$request_parts = explode('/', $_SERVER['REQUEST_URI']);
 
-$request_parts = explode('/', $_GET['url']);
 
-if (array_key_exists($_GET["area"], $ofcomList))
+if (array_key_exists($request_parts{3}, $ofcomList))
 {
-	$area = $_GET["area"];
+	$area = $request_parts{3};
 }
 else
 {
@@ -70,4 +69,5 @@ $length = $ofcomList[$area]['length'];
 $randomPhoneSuffix = str_pad(rand($min , $max ),$length,'0',STR_PAD_LEFT);
 
 $randomPhoneNumber = $prefix . $randomPhoneSuffix;
+echo $randomPhoneNumber;
 ?>
