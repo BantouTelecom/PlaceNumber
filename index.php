@@ -23,47 +23,37 @@ Premium Rate Services	0909 8790000 to 8790999
 UK Wide 	03069 990000 to 990999
 */
 
-$ofcomList =  array();
-//	Name - Prefix - Suffix Start - Suffix End - Length
-$ofcomList['Mobile']     = array('prefix' => "07700 900 ", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['Free']       = array('prefix' => "0808 157 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['Premium']    = array('prefix' => "0909 879 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['National']   = array('prefix' => "0306 999 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['Leeds']      = array('prefix' => "0113 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['Sheffield']  = array('prefix' => "0114 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['Nottingham'] = array('prefix' => "0115 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['Leicester']  = array('prefix' => "0116 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['Bristol']    = array('prefix' => "0117 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['Reading']    = array('prefix' => "0118 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['Birmingham'] = array('prefix' => "0121 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['Edinburgh']  = array('prefix' => "0131 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['Glasgow']    = array('prefix' => "0141 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['Liverpool']  = array('prefix' => "0151 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['Manchester'] = array('prefix' => "0161 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['London']     = array('prefix' => "0207 946 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['Tyneside']   = array('prefix' => "0191 498 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['NI']         = array('prefix' => "028 9018 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['Cardiff']    = array('prefix' => "029 2018 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
-$ofcomList['Generic']    = array('prefix' => "01632 ",     'suffixStart' => 0, 'suffixEnd' => 999999, 'length' => 6);
+$ofcomList =  array(
+'Mobile',
+'Free',
+'Premium',
+'National',
+'Leeds',
+'Sheffield',
+'Nottingham',
+'Leicester',
+'Bristol',
+'Reading',
+'Birmingham',
+'Edinburgh',
+'Glasgow',
+'Liverpool',
+'Manchester',
+'London',
+'Tyneside',
+'NI',
+'Cardiff',
+'Generic'
+);
 
-// ?area=XX
-if (array_key_exists($_GET["area"], $ofcomList))
-{
-	$area = $_GET["area"];
-}
-else
-{
-	$area = array_rand($ofcomList);
+function createDropdown($arr, $frm) {
+	echo '<select name="'.$frm.'" id="'.$frm.'"><option value="">Select one…</option>';
+	foreach ($arr as $key => $value) {
+		echo '<option value="'.$value.'">'.$value.'</option>';
+	}
+	echo '</select>';
 }
 
-$prefix = $ofcomList[$area]['prefix'];
-$min    = $ofcomList[$area]['suffixStart'];
-$max    = $ofcomList[$area]['suffixEnd'];
-$length = $ofcomList[$area]['length'];
-
-$randomPhoneSuffix = str_pad(rand($min , $max ),$length,'0',STR_PAD_LEFT);
-
-$randomPhoneNumber = $prefix . $randomPhoneSuffix;
 ?>
 <!DOCTYPE html>
 <html>
@@ -72,17 +62,12 @@ $randomPhoneNumber = $prefix . $randomPhoneSuffix;
 		<title>PlaceNumber.net - Generate A Random Placeholder Telephone Number</title>
 	</head>
 	<body>
-		<?php 
-			echo "Your random " . $area . " demo phone number is " . $randomPhoneNumber;
-		?>
+		<label for="frmcounty">Select an Area:</label>
+		<?php createDropdown($ofcomList, 'area');?>
+		<div id=number></div>
 		<h2>API Use</h2>
-		Calling this page will result in a random number. You can use these query strings to get a number from a specific geographic location.<br>
-		<?php
-		foreach ($ofcomList as $key => $value) {
-		    echo "<a href=\"?area=$key\">?area=$key</a><br />\n";
-		}
-		?>
-
+		You can request a random number by calling http://placenumber.net/api/uk/[area]
+	
 		<p>Information from <a href="http://stakeholders.ofcom.org.uk/telecoms/numbering/guidance-tele-no/numbers-for-drama">Ofcom's Demo Number Page</a>
 		</p>
 	</body>
