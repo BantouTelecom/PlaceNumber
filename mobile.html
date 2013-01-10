@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <title>Pocket Number</title>
+    <script type="application/javascript" src="shake.js"></script>
+	<script>
+	window.addEventListener('shake', shakeEventDidOccur, false);
+	//function to call when shake occurs
+	function shakeEventDidOccur () {
+	    var number = null;
+		var xmlHttp = null;
+	    xmlHttp = new XMLHttpRequest();
+	    xmlHttp.open( "GET", '/api.php/UK/mobile', false );
+	    xmlHttp.send( null );
+		number = xmlHttp.responseText;
+		document.getElementById('number').innerHTML = number;		}
+	}
+	</script>
+  </head>
+  <body>
+   <h1 id='number'>Shake Me!</h1>
+  </body>
+</html>
