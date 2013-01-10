@@ -69,12 +69,12 @@ function createDropdown($arr, $frm) {
 		    xmlHttp.open( "GET", '/api.php/UK/' + area, false );
 		    xmlHttp.send( null );
 			number = xmlHttp.responseText;
-		    alert(number);
-		}
+			document.getElementById('number').innerHTML = 'Your Random Number is: ' +number;		}
 		</script>
 	</head>
 	<body>
-		<label for="frmcounty">Select an Area:</label>
+		<h2>Get a Random Phone Number</h2>
+		<label for="area">Select an Area:</label>
 		<?php createDropdown($ofcomList, 'area');?>
 		<div id=number></div>
 		<h2>API Use</h2>
