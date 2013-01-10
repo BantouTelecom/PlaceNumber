@@ -47,7 +47,7 @@ $ofcomList =  array(
 );
 
 function createDropdown($arr, $frm) {
-	echo '<select name="'.$frm.'" id="'.$frm.'" onchange="getNumber() ><option value="">Select one…</option>';
+	echo '<select name="'.$frm.'" id="'.$frm.'" onchange="getNumber()"><option value="">Select one…</option>';
 	foreach ($arr as $key => $value) {
 		echo '<option value="'.$value.'">'.$value.'</option>';
 	}
