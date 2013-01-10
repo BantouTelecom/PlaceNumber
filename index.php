@@ -62,8 +62,9 @@ function createDropdown($arr, $frm) {
 		<title>PlaceNumber.net - Generate A Random Placeholder Telephone Number</title>
 		<script>
 		function getNumber() {
-		var area = crit1.options[area.selectedIndex].value;
-		  alert(area);
+			var areamenu = document.criteria.getElementsByID("area");
+			var area = areamenu.options[area.selectedIndex].value;
+		    alert(area);
 		}
 		</script>
 	</head>
