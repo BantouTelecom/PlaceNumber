@@ -14,7 +14,7 @@
 	    var number = null;
 		var xmlHttp = null;
 	    xmlHttp = new XMLHttpRequest();
-	    xmlHttp.open( "GET", '/api.php/UK/mobile', false );
+	    xmlHttp.open( "GET", '/api.php/UK/random', false );
 	    xmlHttp.send( null );
 		number = xmlHttp.responseText;
 		document.getElementById('number').innerHTML = number;		
