@@ -166,6 +166,8 @@ footer{
   padding-top: 5px;
   border-top: 1px solid #EAEAEA;
 }
+
+
 /* Sections */
 
 .logo{
@@ -189,7 +191,9 @@ nav{
 
 @media screen and (max-width: 767px) 
 {
-  body .row nav.ten{display: block; clear: both;}
+  body .row nav.ten{position: absolute; bottom: 110px; display: block; clear: both;}
+  body .row nav.ten a {margin-top:0px;}
+  footer.row {padding-top:70px;}
 }
 
 
