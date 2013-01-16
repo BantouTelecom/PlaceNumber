@@ -85,6 +85,15 @@ function createDropdown() {
 	echo '</select>';
 }
 
+function createApiList() {
+	global $ofcomList;
+	$server = $_SERVER['SERVER_NAME'];
+	
+	foreach ($ofcomList as $key => $value) {
+		echo "<a href='http://$server/uk/$key'>$key</a>, ";
+	}
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -142,21 +151,28 @@ function createDropdown() {
 			<section id="main-content" class="twelve columns">
 				<h2><a class="title-link" href="#">Place Number</a></h2>
 				<h3 class="topic">Generate UK Demo Numbers for Placeholders</h3>
+				<p class="post-content">
+					This service allows you to quickly generate UK telephone numbers suitable to use as placeholders.  
+					The numbers are <em>guaranteed never to be routed</em>.  They are suitable for use in demo apps, as well as in videos, advertising campaigns, TV shows, and movies.<br>
+					Confused? <a href="">Read the blog post about Place Number</a></p>
 				<section class="post-section">
 
 					<form class="custom">
 						<!-- Custom Selects -->
-						<label for="area">Generate a Number:</label>
+						<label for="area">Generate a random demo phone number:</label>
 						<?php createDropdown();?>
 					</form>
 
 					<div class="number" id=number>
-						<p class="post-content">Your Random Number is: </p>
+						<p class="post-content">Your demo phone number is: </p>
 					</div>
 
 					<h6>API Use</h6>
-					<p class="post-content">You can request a random number by calling <pre>http://<?php echo $_SERVER['SERVER_NAME'];?>/uk/[area]</pre></p>
-					<p class="post-content">Information from: <a href="http://stakeholders.ofcom.org.uk/telecoms/numbering/guidance-tele-no/numbers-for-drama">Ofcom's Demo Number Page</a></p>
+					<p class="post-content">You can request a random phone number by calling <pre>http://<?php echo $_SERVER['SERVER_NAME'];?>/uk/<code>$area</code></pre></p>
+					<p class="post-content">Where <code>$area</code> is one of the following: 
+						<?php createApiList();?>
+					</p>
+					<p class="post-content">These numbers are generated based on information from: <a href="http://stakeholders.ofcom.org.uk/telecoms/numbering/guidance-tele-no/numbers-for-drama">Ofcom's Demo Number Page</a></p>
 				</section>
 			</section>
 		</div>
