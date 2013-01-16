@@ -154,7 +154,7 @@ function createApiList() {
 				<p class="post-content">
 					This service allows you to quickly generate UK telephone numbers suitable to use as placeholders.  
 					The numbers are <em>guaranteed never to be routed</em>.  They are suitable for use in demo apps, as well as in videos, advertising campaigns, TV shows, and movies.<br>
-					Confused? <a href="">Read the blog post about Place Number</a></p>
+					Confused? <a href="https://thelab.o2.com/2013/01/introducing-place-number/">Read the blog post about Place Number</a></p>
 				<section class="post-section">
 
 					<form class="custom">
