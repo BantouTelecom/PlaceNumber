@@ -127,7 +127,7 @@ function createApiList() {
 		    xmlHttp.open( "GET", 'index.php/UK/' + area, false );
 		    xmlHttp.send( null );
 			number = xmlHttp.responseText;
-			document.getElementById('number').innerHTML = 'Your Random Telephone Number is: ' +number;		}
+			document.getElementById('number').innerHTML = 'Your Random Placeholder Telephone Number is: ' +number;		}
 		</script>
 	</head>
 	<body>
@@ -163,8 +163,8 @@ function createApiList() {
 						<?php createDropdown();?>
 					</form>
 
-					<div class="number" id=number>
-						<p class="post-content">Your demo phone number is: </p>
+					<div class="number">
+						<p class="post-content" id="number"></p>
 					</div>
 
 					<h6>API Use</h6>
