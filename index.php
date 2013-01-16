@@ -23,33 +23,64 @@ Premium Rate Services	0909 8790000 to 8790999
 UK Wide 	03069 990000 to 990999
 */
 
-$ofcomList =  array(
-'Mobile',
-'Free',
-'Premium',
-'National',
-'Leeds',
-'Sheffield',
-'Nottingham',
-'Leicester',
-'Bristol',
-'Reading',
-'Birmingham',
-'Edinburgh',
-'Glasgow',
-'Liverpool',
-'Manchester',
-'London',
-'Tyneside',
-'NI',
-'Cardiff',
-'Generic'
-);
+$ofcomList =  array();
+//	Name - Prefix - Suffix Start - Suffix End - Length
+$ofcomList['mobile']     = array('prefix' => "07700 900 ", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['free']       = array('prefix' => "0808 157 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['premium']    = array('prefix' => "0909 879 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['national']   = array('prefix' => "0306 999 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['leeds']      = array('prefix' => "0113 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['sheffield']  = array('prefix' => "0114 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['nottingham'] = array('prefix' => "0115 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['leicester']  = array('prefix' => "0116 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['bristol']    = array('prefix' => "0117 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['reading']    = array('prefix' => "0118 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['birmingham'] = array('prefix' => "0121 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['edinburgh']  = array('prefix' => "0131 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['glasgow']    = array('prefix' => "0141 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['liverpool']  = array('prefix' => "0151 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['manchester'] = array('prefix' => "0161 496 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['london']     = array('prefix' => "0207 946 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['tyneside']   = array('prefix' => "0191 498 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['ni']         = array('prefix' => "028 9018 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['cardiff']    = array('prefix' => "029 2018 0", 'suffixStart' => 0, 'suffixEnd' => 999, 'length' => 3);
+$ofcomList['generic']    = array('prefix' => "01632 ",     'suffixStart' => 0, 'suffixEnd' => 999999, 'length' => 6);
 
-function createDropdown($arr, $frm) {
-	echo '<select name="'.$frm.'" id="'.$frm.'" onchange="getNumber(this)"><option value="">Select one…</option>';
-	foreach ($arr as $key => $value) {
-		echo '<option value="'.$value.'">'.$value.'</option>';
+// area= /index.php/uk/$area
+//	If the "API" is called (/uk/$area) send the number and nothing else.
+$request_parts = explode('/', $_SERVER['REQUEST_URI']);
+if (array_key_exists(strtolower($request_parts{3}), $ofcomList))
+{
+	$area = strtolower($request_parts{3});
+
+	$prefix = $ofcomList[$area]['prefix'];
+	$min    = $ofcomList[$area]['suffixStart'];
+	$max    = $ofcomList[$area]['suffixEnd'];
+	$length = $ofcomList[$area]['length'];
+
+	$randomPhoneSuffix = str_pad(rand($min , $max ),$length,'0',STR_PAD_LEFT);
+
+	$randomPhoneNumber = $prefix . $randomPhoneSuffix;
+	echo $randomPhoneNumber;
+	die();
+}
+
+//	If no API is called, return the index page.
+
+function createDropdown() {
+	echo '<select name="area" id="area" onchange="getNumber(this)">
+			<option value="">Select an area code</option>';
+	global $ofcomList;
+	foreach ($ofcomList as $key => $value) {
+		if (strlen($key) == 2)	//	Catches NI.
+		{
+			$displayName = strtoupper($key);
+		}
+		else
+		{
+			$displayName = ucfirst($key);
+		}
+		echo '<option value="'.$key.'">'.$displayName.'</option>';
 	}
 	echo '</select>';
 }
@@ -66,10 +97,10 @@ function createDropdown($arr, $frm) {
 			var area = name.options[name.selectedIndex].value;
 			var xmlHttp = null;
 		    xmlHttp = new XMLHttpRequest();
-		    xmlHttp.open( "GET", '/api.php/UK/' + area, false );
+		    xmlHttp.open( "GET", 'UK/' + area, false );
 		    xmlHttp.send( null );
 			number = xmlHttp.responseText;
-			document.getElementById('number').innerHTML = 'Your Random Number is: ' +number;		}
+			document.getElementById('number').innerHTML = 'Your Random Telephone Number is: ' +number;		}
 		</script>
 	</head>
 	<body>
@@ -77,12 +108,12 @@ function createDropdown($arr, $frm) {
 		<h4>Generate UK Demo Numbers for Placeholders</h4>
 		<h2>Generate a Number</h2>
 		<label for="area">Select an Area:</label>
-		<?php createDropdown($ofcomList, 'area');?>
+		<?php createDropdown();?>
 		<div id=number></div>
 		<h2>API Use</h2>
-		You can request a random number by calling http://<?php echo $_SERVER['SERVER_NAME'];?>/api.php/uk/[area]
+		You can request a random number by calling <pre>http://<?php echo $_SERVER['SERVER_NAME'];?>/uk/[area]</pre>
 	
-		<p>Information from <a href="http://stakeholders.ofcom.org.uk/telecoms/numbering/guidance-tele-no/numbers-for-drama">Ofcom's Demo Number Page</a>
+		<p>Information is from <a href="http://stakeholders.ofcom.org.uk/telecoms/numbering/guidance-tele-no/numbers-for-drama">Ofcom's Demo Number Page</a>
 		</p>
 	</body>
 </html>
