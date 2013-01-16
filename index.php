@@ -89,8 +89,26 @@ function createDropdown() {
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset=utf-8 />
-		<title>PlaceNumber.net - Generate A Random Placeholder Telephone Number</title>
+		<meta charset="utf-8" />
+		
+		<link rel="shortcut icon" type="image/png" href="images/favicon.png">
+		
+		<!-- Set the viewport width to device width for mobile -->
+		<meta name="viewport" content="width=device-width" />
+
+		<title>Place Number || The Lab</title>
+
+		<!-- Included CSS Files (Compressed) -->
+		<link rel="stylesheet" href="stylesheets/foundation.min.css">
+		<link rel="stylesheet" href="stylesheets/app.css">
+
+		<script src="javascripts/modernizr.foundation.js"></script>
+
+		<!-- IE Fix for HTML5 Tags -->
+		<!--[if lt IE 9]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		
 		<script>
 		function getNumber(name) {
 			var number = null;
@@ -104,16 +122,63 @@ function createDropdown() {
 		</script>
 	</head>
 	<body>
-		<h1>PlaceNumber<h1>
-		<h4>Generate UK Demo Numbers for Placeholders</h4>
-		<h2>Generate a Number</h2>
-		<label for="area">Select an Area:</label>
-		<?php createDropdown();?>
-		<div id=number></div>
-		<h2>API Use</h2>
-		You can request a random number by calling <pre>http://<?php echo $_SERVER['SERVER_NAME'];?>/uk/[area]</pre>
-	
-		<p>Information is from <a href="http://stakeholders.ofcom.org.uk/telecoms/numbering/guidance-tele-no/numbers-for-drama">Ofcom's Demo Number Page</a>
-		</p>
+
+		<header class="row">
+			<div class="two columns">
+				<a title="Return to theLab home page" href="https://thelab.o2.com/" target="_blank"><img class="logo" src="images/The_Lab.png" /></a>
+			</div>
+			<img class="beta" src="images/img-lab-beta-tag.png" alt="Beta Image">
+			<nav class="ten columns" role="navigation">
+				<a href="https://thelab.o2.com/who-we-are/">Who we are</a>
+				<a href="https://thelab.o2.com/category/projects/">Projects</a>
+				<a href="https://thelab.o2.com/category/events/">Events</a>
+				<a href="https://thelab.o2.com/category/opinion/">Opinion</a>
+				<a href="https://thelab.o2.com/category/case-studies/">Case Studies</a>
+				<a href="https://thelab.o2.com/category/about-us/">About Us</a>
+			</nav>
+		</header>
+
+		<div class="row">
+			<section id="main-content" class="twelve columns">
+				<h2><a class="title-link" href="#">Place Number</a></h2>
+				<h3 class="topic">Generate UK Demo Numbers for Placeholders</h3>
+				<section class="post-section">
+
+					<form class="custom">
+						<!-- Custom Selects -->
+						<label for="area">Generate a Number:</label>
+						<?php createDropdown();?>
+					</form>
+
+					<div class="number" id=number>
+						<p class="post-content">Your Random Number is: </p>
+					</div>
+
+					<h6>API Use</h6>
+					<p class="post-content">You can request a random number by calling <pre>http://<?php echo $_SERVER['SERVER_NAME'];?>/uk/[area]</pre></p>
+					<p class="post-content">Information from: <a href="http://stakeholders.ofcom.org.uk/telecoms/numbering/guidance-tele-no/numbers-for-drama">Ofcom's Demo Number Page</a></p>
+				</section>
+			</section>
+		</div>
+
+		<footer class="row">
+			<div class="twelve columns">
+				<p>All content &copy; 2013, theLab is a trade mark of Telefónica UK Limited. Telefónica UK Limited, 260 Bath Road, Slough, Berkshire SL14DX. Registered in England No. 1743099.</p>
+			</div>
+		</footer>
+
+		<!-- Included JS Files (Compressed) -->
+		<script src="javascripts/jquery.js"></script>
+		<script src="javascripts/foundation.min.js"></script>
+
+		<!-- Initialize JS Plugins -->
+		<script src="javascripts/app.js"></script>
+
+
+		<script>
+			$(window).load(function(){
+				$("#featured").orbit();
+			});
+		</script> 
 	</body>
 </html>
