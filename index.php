@@ -90,7 +90,7 @@ function createApiList() {
 	$server = $_SERVER['SERVER_NAME'];
 	
 	foreach ($ofcomList as $key => $value) {
-		echo "<a href='http://$server/uk/$key'>$key</a>, ";
+		echo "<a href='http://$server/index.php/uk/$key'>$key</a>, ";
 	}
 }
 
@@ -124,7 +124,7 @@ function createApiList() {
 			var area = name.options[name.selectedIndex].value;
 			var xmlHttp = null;
 		    xmlHttp = new XMLHttpRequest();
-		    xmlHttp.open( "GET", 'UK/' + area, false );
+		    xmlHttp.open( "GET", 'index.php/UK/' + area, false );
 		    xmlHttp.send( null );
 			number = xmlHttp.responseText;
 			document.getElementById('number').innerHTML = 'Your Random Telephone Number is: ' +number;		}
