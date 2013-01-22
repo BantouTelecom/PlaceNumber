@@ -97,7 +97,7 @@ function createApiList() {
 ?>
 <!DOCTYPE html>
 <html>
-	<head>
+  <head>
 		<meta charset="utf-8" />
 		
 		<link rel="shortcut icon" type="image/png" href="images/favicon.png">
@@ -136,7 +136,7 @@ function createApiList() {
 			<div class="two columns">
 				<a title="Return to theLab home page" href="https://thelab.o2.com/" target="_blank"><img class="logo" src="images/The_Lab.png" /></a>
 			</div>
-			<img class="beta" src="images/img-lab-beta-tag.png" alt="Beta Image">
+			<a href="https://github.com/o2Labs/PlaceNumber.git"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 1; float: right;" src="images/fork.png" alt="Fork me on GitHub"></a>
 			<nav class="ten columns" role="navigation">
 				<a href="https://thelab.o2.com/who-we-are/">Who we are</a>
 				<a href="https://thelab.o2.com/category/projects/">Projects</a>
